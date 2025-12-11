@@ -1,3 +1,5 @@
+**¿Qué es Programar?**
+
 Imagina que eres un chef y quieres hacer un pastel.
 
 Necesitas:
@@ -24,6 +26,8 @@ Piensa en:
 - ¿Cuántas rebanadas necesitas?
 - ¿Qué va primero?
 - ¿Cómo "pones" algo sobre otra cosa?
+
+**LECCIÓN 1.2: Variables - Las Cajas con Etiquetas**
 
 Una variable es como una caja con una etiqueta.
 
@@ -65,4 +69,19 @@ persona = {
 nombre: "Juan",
 edad: 25,
 ciudad: "México"
+}
+
+**Tomando Decisiones (Condicionales)**
+Concepto:
+text
+En la vida real tomamos decisiones todo el tiempo:
+
+SI está lloviendo ENTONCES llevo paraguas
+SI tengo hambre ENTONCES como algo
+SI es fin de semana ENTONCES duermo más
+
+En programación es igual:
+
+if (condición) {
+// código que se ejecuta si la condición es verdadera
 }
