@@ -85,3 +85,21 @@ En programación es igual:
 if (condición) {
 // código que se ejecuta si la condición es verdadera
 }
+
+
+**Bucles(Loops)**
+
+Bucles (Loops) - Repetir Acciones
+Imagina que tienes que escribir:
+"Debo estudiar programación" 100 veces.
+
+❌ Forma tonta:
+console.log("Debo estudiar programación"); // línea 1
+console.log("Debo estudiar programación"); // línea 2
+console.log("Debo estudiar programación"); // línea 3
+... (97 líneas más)
+
+✅ Forma inteligente (con bucle):
+for (let i = 0; i < 100; i++) {
+  console.log("Debo estudiar programación");
+}
