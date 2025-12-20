@@ -234,3 +234,19 @@ console.log('\n--- Additional Tests ---');
 console.log(`-5 + 3 = ${calculator(-5, 3, 'addition')}`);        // -2
 console.log(`0 * 100 = ${calculator(0, 100, 'multiplication')}`); // 0
 console.log(`7.5 / 2.5 = ${calculator(7.5, 2.5, 'division')}`);  // 3
+
+
+// EXERCISE : TEMPERATURE CONVERTER 
+
+console.log('\n === TEMPERATURE CONVERTER ===');
+
+//Celsius to Fahrenheit : ( C * 9/5) + 32 = F
+const celsiusToFahrenheit = (celcius) => (celcius * 9/5) + 32;
+
+//Fahrenheit to Celsius : ( F - 32) * 5/9 = C
+const fahrenheitToCelsius = (fahrenheit) => (fahrenheit - 32) * 5/9;
+
+console.log(`25˚C = ${celsiusToFahrenheit(25)}˚F`);
+console.log(`77˚F = ${fahrenheitToCelsius(77).toFixed(1)}˚C`);
+console.log(`0°C = ${celsiusToFahrenheit(0)}°F`);
+console.log(`100°C = ${celsiusToFahrenheit(100)}°F`);
