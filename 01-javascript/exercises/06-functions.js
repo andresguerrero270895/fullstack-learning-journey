@@ -299,3 +299,39 @@ testCases.forEach(password => {
     result.errors.forEach(error => console.log(`   - ${error}`));
   }
 });
+
+//=== EXERCISE : RECURSIVE FUNCTIONS ===
+
+console.log('\n=== RECURSIVE FUNCTIONS ===');
+
+/**
+ * A Recursive function invokes itself
+ * Example: Factorial (5! = 5 x 4 x 3 x 2 x 1 = 120)
+*/
+
+function factorial(n) {
+  //Base case (termination condition)
+  if(n <= 1){
+    return 1;
+  }
+  //Recursive case
+
+  return n * factorial(n - 1);
+}
+
+console.log(`5! = ${factorial(5)}`);    //120
+console.log(`10! = ${factorial(10)}`);  //3628800
+
+//Fibonacci: 0, 1, 1, 2, 3, 5, 8, 13, 21 ...
+//each number is the summ of the two preceding ones 
+
+function fibonacci(n) {
+  if( n <= 1) return n;
+  return fibonacci (n - 1) + fibonacci(n - 2);
+}
+
+console.log('\nFirst 10 Fibonacci numbers:');
+for(let i = 0; i < 10; i++){
+  process.stdout.write(`${fibonacci(i)}`);
+}
+console.log();
