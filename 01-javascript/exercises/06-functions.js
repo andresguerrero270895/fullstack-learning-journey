@@ -236,7 +236,7 @@ console.log(`0 * 100 = ${calculator(0, 100, 'multiplication')}`); // 0
 console.log(`7.5 / 2.5 = ${calculator(7.5, 2.5, 'division')}`);  // 3
 
 
-// EXERCISE : TEMPERATURE CONVERTER 
+//=== EXERCISE : TEMPERATURE CONVERTER ====
 
 console.log('\n === TEMPERATURE CONVERTER ===');
 
@@ -250,3 +250,52 @@ console.log(`25˚C = ${celsiusToFahrenheit(25)}˚F`);
 console.log(`77˚F = ${fahrenheitToCelsius(77).toFixed(1)}˚C`);
 console.log(`0°C = ${celsiusToFahrenheit(0)}°F`);
 console.log(`100°C = ${celsiusToFahrenheit(100)}°F`);
+
+//=== PASSWORD VALIDATOR ===
+
+console.log("\n=== PASSWORD VALIDATOR ===");
+
+function validatePassword(password){
+  const errors = [];
+  //verify minimun length requirement
+  if(password.length < 8){
+    errors.push('Must contain at least 8 characters');
+  }
+
+  //verify numeric character presence
+  if(!/\d/.test(password)){
+    errors.push('Must contain at least one number');
+  }
+
+  //verify uppercase letter presence
+  if(!/[A-Z]/.test(password)) {
+    errors.push('Must contain at least one uppercase letter');
+  }
+
+  //verify lowercase letter presence
+  if(!/[a-z]/.test(password)){
+    errors.push('Must contain at least one lowercase letter')
+  }
+
+  //return valition outcome 
+  if(errors.length === 0 ){
+    return { isValid : true, message: "Password is Valid"};
+  } else {
+    return {isValid : false, errors: errors};
+  }
+}
+
+// Test the validator
+const testCases = ['abc', '12345678', 'Password', 'Password123'];
+
+testCases.forEach(password => {
+  console.log(`\nTesting: "${password}"`);
+  const result = validatePassword(password);
+  
+  if (result.isValid) {
+    console.log(result.message);
+  } else {
+    console.log('❌ Invalid password:');
+    result.errors.forEach(error => console.log(`   - ${error}`));
+  }
+});
