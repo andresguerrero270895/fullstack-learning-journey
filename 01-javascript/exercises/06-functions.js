@@ -332,6 +332,26 @@ function fibonacci(n) {
 
 console.log('\nFirst 10 Fibonacci numbers:');
 for(let i = 0; i < 10; i++){
-  process.stdout.write(`${fibonacci(i)}`);
+  process.stdout.write(`${fibonacci(i)} , `);
 }
 console.log();
+
+
+//=== NEW EXERCISES ===
+console.log("\n=== EXERCISES ===");
+
+//Exercise 1 : Create a function that calculates the average of an array of numbers
+function calculateAverage(numbers){
+  if (numbers.length === 0) return 0;
+
+  let sum = 0;
+  for(let i = 0; i< numbers.length; i++){
+    sum += numbers[i]
+  }
+
+  return sum / numbers.length;
+}
+
+console.log('\nAverage [10, 20, 30, 40, 50]:', calculateAverage([10, 20, 30, 40, 50])); // 30
+
+
