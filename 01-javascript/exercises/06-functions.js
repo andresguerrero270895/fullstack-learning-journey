@@ -184,3 +184,53 @@ function scopeExample(){
 scopeExample();
 console.log(`${globalVariable} and I Can be accesible anywhere in this code`);
 // console.log(localVariable); //ERROR localVariable is not defined in this scope
+
+// === EXERCISE : CALCULATOR ====
+console.log('== CALCULATOR ===');
+/**
+ * Implement a basic calculator function
+ * 
+ * @param {number} a - First operand
+ * @param {number} b - Second operand
+ * @param {string} operation - The operation to perform 
+ * @returns {number|string} - The result or an error message
+ * 
+ */
+
+function calculator (a, b, operation) {
+  switch (operation){
+    case "addition":
+      return a + b;
+
+    case "subtraction":
+      return a - b;
+
+    case "multiplication":
+      return a * b;
+    
+    case "division":
+      if(b === 0){
+        return `Error: Division by zero is undefined`
+      }
+      return a / b;
+    default:
+      return `Error ${operation} is not a valid operation`
+  }
+}
+
+//TESTING CALCULATOR 
+
+console.log('\n=== BASIC OPERATIONS ===');
+console.log(`10 + 5 = ${calculator(10, 5, "addition")}`);
+console.log(`10 - 5 = ${calculator(10, 5, "subtraction")}`);
+console.log(`10 * 5 = ${calculator(10, 5, "multiplication")}`);
+console.log(`10 / 5 = ${calculator(10, 5, "division")}`);
+
+console.log('\n--- Edge Cases ---');
+console.log(`10 / 0 = ${calculator(10, 0, 'division')}`);        // Error message
+console.log(`Invalid op: ${calculator(10, 5, 'power')}`);        // Error message
+
+console.log('\n--- Additional Tests ---');
+console.log(`-5 + 3 = ${calculator(-5, 3, 'addition')}`);        // -2
+console.log(`0 * 100 = ${calculator(0, 100, 'multiplication')}`); // 0
+console.log(`7.5 / 2.5 = ${calculator(7.5, 2.5, 'division')}`);  // 3
