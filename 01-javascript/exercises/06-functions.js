@@ -355,3 +355,13 @@ function calculateAverage(numbers){
 console.log('\nAverage [10, 20, 30, 40, 50]:', calculateAverage([10, 20, 30, 40, 50])); // 30
 
 
+// Exercise 2 : Create a function that reverse a string
+function reverseString(text){
+  return text.split('').reverse().join('');
+}
+
+console.log("\n===REVERSE WORD===");
+console.log('Reverse Javascript:', reverseString('javascript')); // tpircsavaj
+
+
+//E
