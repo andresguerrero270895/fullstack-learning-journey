@@ -364,4 +364,27 @@ console.log("\n===REVERSE WORD===");
 console.log('Reverse Javascript:', reverseString('javascript')); // tpircsavaj
 
 
-//E
+//Exercise 3 : 
+function isPrime(number){
+  // special cases : 0, 1 and negative numbers are not primes
+  if(number <= 1) return false;
+  // Number 2 is the only 'pair' - prime
+  if(number === 2) return true;
+  // if the number is 'pair' and not the number 2, not is a prime number
+  if( number % 2 === 0) return false;
+
+  // search numbers from 3 to the square root of the number 
+  for(i = 3 ; i <= Math.sqrt(number); i+=2){
+    if(number % i === 0){
+      return false;
+    }
+  }
+  return true; // if we finish the loop without  finding dividers, it's prime 
+}
+
+console.log("\n===CHECK PRIME NUMBERS===");
+console.log("Does 7 a prime number?", isPrime(7));     //true
+console.log("Does 10 a prime number?", isPrime(10));   //false
+console.log("Does 1 a prime number?", isPrime(1));     //false
+console.log("Does 21 a prime number?", isPrime(21));   //false
+console.log("Does 17 a prime number?", isPrime(17));   //true
