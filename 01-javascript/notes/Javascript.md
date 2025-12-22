@@ -1,105 +1,91 @@
-**¿Qué es Programar?**
+**What is Programming?**
 
-Imagina que eres un chef y quieres hacer un pastel.
+Imagine that you are a chef and you want to make a cake.
 
-Necesitas:
+You need:
 
-1. INGREDIENTES (datos): harina, huevos, azúcar
-2. RECETA (algoritmo): pasos ordenados para mezclar
-3. HERRAMIENTAS (lenguaje): bowl, horno, batidora
+1. INGREDIENTS (data): flour, eggs, sugar2. RECIPE (algorithm): ordered steps for mixing3. TOOLS (language): bowl, oven, mixer
+The computer is like a VERY obedient but VERY dumb kitchen assistant:
 
-La computadora es como un ayudante de cocina MUY obediente pero MUY tonto:
+- It does EXACTLY what you tell it- It assumes nothing- It cannot "guess" what you want
 
-- Hace EXACTAMENTE lo que le dices
-- No asume nada
-- No puede "adivinar" qué quieres
+If you say "put the cake in the oven" but didn't tell it
+to turn on the oven first... you'll get a raw cake!
 
-Si le dices "pon el pastel en el horno", pero no le dijiste que
-encendiera el horno primero... ¡tendrás un pastel crudo!
+Write instructions for making a ham and cheese sandwich,
+so detailed that a robot that has never seen food could follow them.
 
-Escribe instrucciones para hacer un sandwich de jamón y queso,
-tan detalladas que un robot que nunca ha visto comida pueda seguirlas.
+Think about:
 
-Piensa en:
+- Is the bread in a bag? Does it need to be opened?
+- How many slices do you need?
+- What goes first?
+- How do you "put" something on something else?
 
-- ¿El pan viene en una bolsa? ¿Hay que abrirla?
-- ¿Cuántas rebanadas necesitas?
-- ¿Qué va primero?
-- ¿Cómo "pones" algo sobre otra cosa?
+**LESSON 1.2: Variables**
 
-**LECCIÓN 1.2: Variables - Las Cajas con Etiquetas**
+A variable is like a box with a label.
 
-Una variable es como una caja con una etiqueta.
+Imagine you have boxes in your room:
+📦 "toys" → contains: ball, toy cars, action figures📦 "clothes" → contains: shirts, pants📦 "age" → contains: 25
+The LABEL is the variable name.
+The CONTENTS are the variable value.
 
-Imagina que tienes cajas en tu cuarto:
-📦 "juguetes" → contiene: pelota, carros, muñecos
-📦 "ropa" → contiene: camisas, pantalones
-📦 "edad" → contiene: 25
+In programming:
 
-La ETIQUETA es el nombre de la variable.
-El CONTENIDO es el valor de la variable.
+- You can create boxes (declare variables)
+- You can put things inside (assign values)
+- You can see what's inside (read variables)
+- You can change the contents (reassign)
 
-En programación:
+📦 Numbers (Numbers):
+age = 25
+price = 19.99
+temperature = -5
+📦 Text (Strings):
+name = "Juan"
+message = "Hello, how are you?"
+empty = ""
 
-- Puedes crear cajas (declarar variables)
-- Puedes poner cosas dentro (asignar valores)
-- Puedes ver qué hay dentro (leer variables)
-- Puedes cambiar el contenido (reasignar)
+📦 True/False (Booleans):
+isRaining = true
+amHungry = false
+📦 Lists (Arrays):
+fruits = ["apple", "banana", "orange"]
+numbers = [1, 2, 3, 4, 5]
 
-📦 Números (Numbers):
-edad = 25
-precio = 19.99
-temperatura = -5
-
-📦 Texto (Strings):
-nombre = "Juan"
-mensaje = "Hola, ¿cómo estás?"
-vacio = ""
-
-📦 Verdadero/Falso (Booleans):
-estaLloviendo = true (verdadero)
-tengoHambre = false (falso)
-
-📦 Listas (Arrays):
-frutas = ["manzana", "banana", "naranja"]
-numeros = [1, 2, 3, 4, 5]
-
-📦 Objetos (Objects):
-persona = {
-nombre: "Juan",
-edad: 25,
-ciudad: "México"
+📦 Objects (Objects):
+person = {
+name: "Juan",
+age: 25,
+city: "Mexico"
 }
 
-**Tomando Decisiones (Condicionales)**
-Concepto:
-text
-En la vida real tomamos decisiones todo el tiempo:
+**Making Decisions (Conditionals)**
 
-SI está lloviendo ENTONCES llevo paraguas
-SI tengo hambre ENTONCES como algo
-SI es fin de semana ENTONCES duermo más
+Concept: In real life we make decisions all the time:
 
-En programación es igual:
+IF it is raining THEN I take an umbrella
+IF I am hungry THEN I eat something
+IF it is the weekend THEN I sleep more
+In programming it is the same:
 
-if (condición) {
-// código que se ejecuta si la condición es verdadera
+if (condition) {
+// code that executes if the condition is true
 }
 
+**Loops**
 
-**Bucles(Loops)**
+Loops (Loops) - Repeating ActionsImagine you have to write:
+"I must study programming" 100 times.
 
-Bucles (Loops) - Repetir Acciones
-Imagina que tienes que escribir:
-"Debo estudiar programación" 100 veces.
+❌ Dumb way:
+console.log("I must study programming"); // line 1
+console.log("I must study programming"); // line 2
+console.log("I must study programming"); // line 3
+... (97 more lines)
 
-❌ Forma tonta:
-console.log("Debo estudiar programación"); // línea 1
-console.log("Debo estudiar programación"); // línea 2
-console.log("Debo estudiar programación"); // línea 3
-... (97 líneas más)
-
-✅ Forma inteligente (con bucle):
+✅ Smart way (with loop):
 for (let i = 0; i < 100; i++) {
-  console.log("Debo estudiar programación");
+console.log("I must study programming");
 }
