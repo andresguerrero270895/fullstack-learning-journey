@@ -167,3 +167,38 @@ const user = {
 user.introduce();
 user.haveBirthday(); 
 
+//===ITERATE OVER OBJECTS ====
+console.log("\n=== ITERATE OVER OBJECTS ===");
+
+const product = {
+  name: "Laptop",
+  price : 1500,
+  brand: "Apple",
+  available: "True"
+};
+
+//For ...in ( iterates through keys)
+console.log("===WITH...FOR..IN");
+for(let key in product){
+  console.log(`${key} : ${product[key]}`);
+}
+
+//Object.keys() -- Keys array
+console.log("\n===Object.keys()===");
+const keys = Object.keys(product);
+console.log("Keys:", keys);
+
+//Object.values() -- Values array 
+console.log("\n===Object.values()===");
+const values = Object.values(product);
+console.log("Values:", values);
+
+//Object.entries() - [key-value]
+console.log("\n === Object.entries() ===");
+const entries = Object.entries(product);
+console.log("Entries:", entries);
+
+//Iterate with Object.entries()
+for(let [key, value] of Object.entries(product)){
+  console.log(`${key} => ${value}`);
+}
