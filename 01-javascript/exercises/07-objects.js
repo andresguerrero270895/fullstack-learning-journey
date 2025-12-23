@@ -202,3 +202,121 @@ console.log("Entries:", entries);
 for(let [key, value] of Object.entries(product)){
   console.log(`${key} => ${value}`);
 }
+
+//=== DESTRUCTURING ===
+console.log("\n=== DESTRUCTURING ===");
+
+const book = {
+  title: "Clean Code",
+  author: "Robert C. Martin",
+  pages : 464,
+  year: 2008
+}
+
+//Traditional way 
+const traditionalTitle = book.title;
+const traditionalAuthor = book.author;
+
+//Destructuring (extract multiple properties at once)
+const { title, author, pages, year } = book;
+
+console.log(`Title : ${title}`);
+console.log(`Author : ${author}`);
+
+//Destructuring with new names
+const { title: bookName, author: writer } = book;
+console.log(`The book "${bookName}" was written by ${writer}`);
+
+//Destructuring with default values - with new names 
+const { publisher  = "Unknown" } = book;
+console.log(`Publisher: ${publisher}`);
+
+
+//=== SPREAD OPERATOR WITH OBJECTS ===
+console.log("\n===SPREAD OPERATOR===");
+const basicData = {
+  name : "Pedro",
+  age : 30,
+};
+
+const contactData = {
+    email : "pedro@contact.com",
+    phone : "555-000"
+};
+
+//Combine objects with spread (...)
+
+const completeProfile = {
+  ...basicData,
+  ...contactData,
+  premium : true
+};
+
+console.log("Complete Profile:", completeProfile);
+
+//Copy an object (shallow copy) - Copia superficial 
+const personCopy = {
+  ...person,
+}
+console.log("Copy:", personCopy);
+
+// === EXERCISE : STUDENT MANAGEMENT SYSTEM ===
+console.log("\n=== STUDENT MANAGEMENT SYSTEM ===");
+
+
+const student = {
+  id : 1 ,
+  name : "Laura Martinez",
+  age : 22,
+  major : "System Engineering",
+  semester : 6,
+  courses : [
+    {name: "Programing", grade : 95},
+    {name : "Databases", grade : 88},
+    {name : "Networks", grade : 92}
+  ],
+  
+  //Method to calculate average
+  calculateAverage() {
+    const sum = this.courses.reduce((acc, course) => {
+      return acc + course.grade;
+    },0 );
+
+    return sum / this.courses.length;
+  },
+
+  //Method to add a course
+  addCourse(name, grade){
+    this.courses.push({ name, grade });
+    console.log(`Course "${name}" added with grade ${grade}`);
+  },
+
+  //Method to show information
+  showInfo() {
+    console.log(`
+    ╔════════════════════════════════════════╗
+    ║        INFORMACIÓN DEL ESTUDIANTE      ║
+    ╠════════════════════════════════════════╣
+    ║  ID: ${this.id}
+    ║  Name : ${this.name}
+    ║  Age: ${this.age} años
+    ║  Major: ${this.major}
+    ║  Semester: ${this.semester}
+    ║  Average: ${this.calculateAverage().toFixed(2)}
+    ║  Courses: ${this.courses.length}
+    ╚════════════════════════════════════════╝
+    `)
+  }
+}
+
+//use the object
+student.showInfo();
+student.addCourse("Artificial Inteligence", 90); 
+console.log(`New Average : ${student.calculateAverage().toFixed(2)}`);
+
+//
+
+
+
+
+
