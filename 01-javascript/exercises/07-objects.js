@@ -314,9 +314,93 @@ student.showInfo();
 student.addCourse("Artificial Inteligence", 90); 
 console.log(`New Average : ${student.calculateAverage().toFixed(2)}`);
 
-//
+//=== CREATE A "BANK ACCOUNT"- OBJECT 
 
+const bankAccount = { 
+  holder : "Jane Smith",
+  accountNumber : '3112200-535',
+  balance : 2500.00,
+  history : [],
 
+  //Method to add money an logs in history 
+  deposit(amount) {
+    if(amount <= 0){ 
+      console.log("Invalid Deposit amount")
+      return ;
+    }
+    this.balance += amount;
+    const transaction = {
+      type : 'deposit', 
+      amount,
+      date :  new Date().toISOString().split('T')[0],
+      balanceAfter : this.balance
+    }
+    this.history.push(transaction);
+    console.log(`Deposited $${amount.toFixed(2)}. New Balance: $${this.balance.toFixed(2)}`);
+    console.log(this.history)
+  },
+
+  // Removes money if sufficient balance 
+  withdraw(amount) {
+    if(amount <= 0){
+      console.log("Invalid Withdraw amount");
+      return;
+    }
+
+    if(amount > this.balance) { 
+      console.log(`Insuficcient funds. Your current balance is ${this.balance.toFixed(2)}`);
+      return;
+    }
+
+    this.balance -= amount;
+    const transaction = {
+      type : 'withdrawal',
+      amount,
+      date : new Date().toISOString().split('T')[0],
+      balanceAfter : this.balance
+    }
+    this.history.push(transaction);
+    console.log(`Withdrawal $${amount.toFixed(2)}. New balance: $${this.balance.toFixed(2)}`);
+  },
+
+  checkBalance() {
+    console.log(`Current Balance: $${this.balance.toFixed(2)}`);
+    return this.balance;
+  },
+
+  viewHistory() {
+    console.log("\n === TRANSACTION HISTORY ===");
+    console.log(`Account Holder ; ${this.holder}`);
+    console.log(`Account Number : ${this.accountNumber}\n`);
+
+    this.history.forEach((transaction, index) => {
+      console.log(`#${index + 1} ${transaction.date.padEnd(12)} ${transaction.type.padEnd(10)} $${transaction.amount.toString().padStart(8)} Balance: $${transaction.balanceAfter.toFixed(2)}`);
+    });
+    console.log("\n");
+  }
+};
+
+//=== DEMONSTRATION OF BANK ACCOUNT FUNCTIONALITY ====
+
+console.log("=== INITIAL STATE ===");
+bankAccount.checkBalance();
+bankAccount.viewHistory();
+
+console.log("\n=== TRANSACTION 1 ===");
+bankAccount.deposit(500);
+
+console.log("\n=== TRANSACTION 2 ===");
+bankAccount.withdraw(200);
+
+console.log("\n=== TRANSACTION 3 ===");
+bankAccount.withdraw(2000); // Should fail
+console.log("\n=== TRANSACTION 4 ===");
+bankAccount.deposit(1000);
+
+console.log("\n=== FINAL STATE ===");
+bankAccount.checkBalance();
+bankAccount.viewHistory();
+console.log(bankAccount);
 
 
 
