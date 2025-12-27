@@ -232,6 +232,77 @@ const average =  users.filter( u => u.active)
 .reduce((sum, u, _, arr) => sum + u.age / arr.length, 0);
 console.log("Active users avg age:", average.toFixed(1), "years");
 
+//=== PRACTICAL EXERCISE : ONLINE STORE ===
+const store = {
+  products: [
+    { id: 1, name: 'iPhone 15', price: 22000, stock: 10, category: 'Phones' },
+    { id: 2, name: 'MacBook Pro', price: 45000, stock: 5, category: 'Laptops' },
+    { id: 3, name: 'AirPods Pro', price: 5500, stock: 20, category: 'Audio' },
+    { id: 4, name: 'iPad Air', price: 15000, stock: 8, category: 'Tablets' },
+    { id: 5, name: 'Apple Watch', price: 9000, stock: 0, category: 'Wearables' },
+    { id: 6, name: 'Samsung S24', price: 18000, stock: 15, category: 'Phones' },
+    { id: 7, name: 'Dell XPS', price: 35000, stock: 3, category: 'Laptops' }
+  ],
+
+  //Get avaialable products (stock > 0)
+
+  getAvailable() {
+    return this.products.filter(p => p.stock > 0);
+  },
+
+  //Search by name
+
+  searchByName(text){
+    return this.products.filter(p =>
+      p.name.toLowerCase().includes(text.toLowerCase)
+    );
+  },
+
+  //Filter by price range
+
+  filterByPrice(min, max){
+    return this.products.filter(p => p.price >= min && p.price <= max);
+  },
+
+  //Get unique categories
+  getCategories(){
+    const categories = this.products.map(p => p.category);
+    return [...new Set (categories)]; // Set removes duplicates 
+  },
+
+  //Total inventory value 
+  calculateTotalInventory(){
+    return this.products.reduce((total, p) => {
+      return total + (p.price * p.stock);
+    }, 0);
+  }, 
+
+  //Out of stock products 
+  getOutStock(){
+    return this.products.filter(p => p.stock === 0);
+  }
+};
+
+//Use methods 
+
+console.log('Available products:');
+store.getAvailable().forEach(p => {
+  console.log(`  - ${p.name} ($${p.price}) - ${p.stock} units`);
+});
+
+console.log('\nSearch "pro":');
+store.searchByName('pro').forEach(p => console.log(`  - ${p.name}`));
+
+console.log('\nProducts between $10,000 and $20,000:');
+store.filterByPrice(10000, 20000).forEach(p => {
+  console.log(`  - ${p.name}: $${p.price}`);
+});
+
+console.log('\nCategories:', store.getCategories());
+console.log(`\nTotal inventory value: $${store.calculateTotalInventory().toLocaleString()}`);
+console.log('\nOut of stock:', store.getOutStock().map(p => p.name));
+
+
 
 
 
