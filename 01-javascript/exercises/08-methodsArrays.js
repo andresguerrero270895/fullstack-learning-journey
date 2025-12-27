@@ -172,6 +172,74 @@ const byCategory = products.reduce((groups, product) =>{
 console.log("By category", byCategory);
 
 
+//=== Some() and every() ====
+console.log("\n=== Some and Every===");
+
+// Some() - Does any element meet condition?
+const anyOver40 = users.some( u => u.age > 40);
+console.log(`Any user over 40? ${anyOver40}`);
+
+const anyUnder18 = users.some( u => u.age < 18);
+console.log(`Any user under 18? ${anyUnder18}`);
+
+// every() - Do all elements meet condition?
+const allOver18 = users.every( u => u.age >= 18);
+console.log(`All over 18? ${allOver18}`);
+
+const allActive = users.every( u => u.active);
+console.log(`All active? ${allActive}`);
+
+
+//=== sort() - sort elements 
+//WARNING = sort modifies(mutates) the original array.
+const unsortedNumbers = [3, 1, 4, 1, 5, 9, 2, 6];
+
+//copy to avoid mutation
+const copy = [...unsortedNumbers];
+
+//sort numbers (ascending)
+copy.sort((a, b) => a - b);
+console.log(`Ascending ${copy}`);
+
+//sort descending 
+const descending = [...unsortedNumbers].sort((a, b) => b - a);
+console.log("Descending", descending);
+
+//sort Users by age 
+const byAge = [...users].sort((a,b) => a.age - b.age);
+console.log( "By age:", byAge.map( u => `${u.name}(${u.age})`));
+
+//sort alphabetically 
+const byName = [...users].sort((a,b) => {
+  return a.name.localeCompare(b.name)
+});
+console.log("By name:", byName.map(u => u.name));
+
+//=== Method CHAINING ===
+console.log("\n=== METHOD CHAINIG ===");
+console.log("Combine multiple methods in one line")
+
+
+//Get names of active users over 25, sorted alphabetically 
+const result = users.filter( u => u.active)           //filter by active 
+.filter(u => u.age > 25)                              //filter by age over 25 
+.sort((a,b) => a.name.localeCompare(b.name))          //sort by name
+.map(u => u.name);
+console.log('Active over 25 years, sorted:', result);
+
+//Calculate average of active users
+const average =  users.filter( u => u.active)
+.reduce((sum, u, _, arr) => sum + u.age / arr.length, 0);
+console.log("Active users avg age:", average.toFixed(1), "years");
+
+
+
+
+
+
+
+
+
 
 
 
