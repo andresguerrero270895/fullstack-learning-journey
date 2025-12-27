@@ -42,7 +42,7 @@ users.forEach(user => {
   console.log(`- ${user.name} (${user.age}) years`);
 });
 
-//forEach also recives index
+//forEach() also recives index
 console.log("\nWith index");
 numbers.slice(0 , 3).forEach((num, index) => {
   console.log(`Position ${index}: ${num}`);
@@ -70,7 +70,7 @@ const userSummary = users.map( user => ({
 console.log("Summary:", userSummary);
 
 
-//=== filter - Filter elements ===
+//=== filter() - Filter elements ===
 console.log("\n=== Filter ===");
 console.log("filter() cretes new array with elements that meet condition");
 
@@ -95,7 +95,88 @@ console.log("Over 30", over30.map(u => u.name));
 const electronicProducts = products.filter(product => product. category === "Electronics");
 console.log("Electronic products:", electronicProducts.map( u => u.name));
 
-//
+//=== find() - Find one element ===
+console.log("\n === find ===");
+console.log("find() Returns FIRST element meeting condition");
+
+//Find user by ID 
+const foundUser = users.find( u => u.id === 3);
+console.log("User with ID 3:", foundUser);
+
+//Find first number greater than 7 
+const firstOver7 = numbers.find( n => n > 7 );
+console.log("First nyumber over 7 :", firstOver7);
+
+//Returns undefined if not found 
+const notFound = users.find( u => u.id === 999);
+console.log("Usser:", notFound);
+
+//=== findIndex() - Find element position ===
+console.log("\n=== findIndex ===");
+const davidIndex = users.findIndex(u => u.name === "David");
+console.log(`David Position: ${davidIndex}`);
+
+
+//Return -1 if does'nt exist 
+const notFoundIndex = users.findIndex(u => u.name === "Zoe");
+console.log("Zoe position:", notFoundIndex);
+
+//Reduce () - Reduce to a single value 
+console.log("\n=== reduce ===");
+console.log("reduce() combines all elements into single value");
+
+/**
+ * Reduce receives : 
+ * A function with(accumualator, currentElements)
+ * Initial accumulator value
+ */
+
+//sum all numbers 
+const sum = numbers.reduce((accumulator, number) => {
+  return accumulator + number;
+}, 0 ) // 0 Is the initial accumulator
+
+
+//Short form 
+const shortSum = numbers.reduce((acc, num) => acc + num, 0);
+console.log(`Sum (short): ${shortSum}`);
+
+//Find maximum 
+const max = numbers.reduce((max, num) => {
+  return num > max ? num : max;
+}, numbers[0]);
+console.log(`Max number: ${max}`);
+
+//Total products price 
+totalPrice = products.reduce((total, product) => {
+  return total + product.price;
+}, 0);
+console.log(`Total price: $${totalPrice}`);
+
+//Count active users 
+const activeCount = users.reduce((count, user) => {
+  return user.active ? count + 1 : count;
+}, 0);
+console.log(`Active Users ${activeCount}`);
+
+//Group products by category
+const byCategory = products.reduce((groups, product) =>{
+  const category = product.category;
+
+  if(!groups[category]){
+    groups[category] = [];
+  }
+  groups[category].push(product.name);
+  return groups;
+}, {});
+console.log("By category", byCategory);
+
+
+
+
+
+
+
 
 
 
