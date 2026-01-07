@@ -31,7 +31,7 @@ const myFirstPromise = new Promise ((resolve, reject) => {
     } else {
       reject("Something went wrong"); //Rejected
     }
-  }, 1000);
+  }, 100);
 });
 
 //Using the promises with .then() and catch()
@@ -49,7 +49,7 @@ myFirstPromise.then((result) => {
 function getUserCallback(id, callback) {
   setTimeout(() => { 
     callback({id: id, name: "Andres"});
-  }, 2000);
+  }, 200);
 }
 
 //Same function with promises
@@ -61,7 +61,7 @@ function getUserPromise(id) {
         return;
       }
       resolve({id: id, name: "Andres"});
-    }, 2000);
+    }, 200);
   });
 }
 
@@ -83,7 +83,7 @@ function getUser(id) {
     setTimeout(() => {
       console.log("1. User retrieved");
       resolve({ id: id, name: "Esteban"})
-    }, 3000);
+    }, 500);
   });
 }
 
@@ -95,7 +95,7 @@ function getOrders(user) {
         user: user, 
         orders: [{ id: 101, product: "Laptop"}]
       });
-    }, 3000);
+    }, 500);
   });
 }
 
@@ -107,7 +107,7 @@ function getDetails(data) {
         ...data,
         details: { price: 15000, status: "Shipped"}
       });
-    }, 3000);
+    }, 500);
   });
 }
 
@@ -127,4 +127,25 @@ getUser(1)
 .then(getDetails)
 .then(console.log)
 .catch(console.error);
+
+//=== EXAMPLE 4 : Promise.all - Execute in paeallel
+
+console.log("\n=== PROMISE.ALL");
+
+const promise1 = new Promise((resolve) => {
+  setTimeout(() => resolve("Result 1"), 4000);
+});
+
+const promise2 = new Promise((resolve) => {
+  setTimeout(() => resolve("Result 2"), 5000);
+});
+
+const promise3 =  new Promise((resolve) => {
+  setTimeout(() => resolve("Result 3"), 6000);
+});
+
+Promise.all([promise1, promise2, promise3])
+.then((results) => {
+  console.log("All results", results);
+});
 
