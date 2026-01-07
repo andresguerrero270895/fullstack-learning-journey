@@ -74,3 +74,57 @@ getUserPromise(1)
   console.log("Error", error);
 });
 
+//=== EXAMPLE 3 : Chaining Promises (.then chain)
+
+console.log("\n ===CHAINING PROMISES ===");
+
+function getUser(id) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("1. User retrieved");
+      resolve({ id: id, name: "Esteban"})
+    }, 3000);
+  });
+}
+
+function getOrders(user) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("2. Order retrieved");
+      resolve({ 
+        user: user, 
+        orders: [{ id: 101, product: "Laptop"}]
+      });
+    }, 3000);
+  });
+}
+
+function getDetails(data) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("3. Details Retrieved");
+      resolve({
+        ...data,
+        details: { price: 15000, status: "Shipped"}
+      });
+    }, 3000);
+  });
+}
+
+// Clean chainig (goodbye callback hell!)
+// getUser(1)
+// .then((user) => getOrders(user))
+// .then((data) => getDetails(data))
+// .then((result) => {
+//   console.log("Final result", result);
+// }).catch((error) => {
+//   console.log("Error at any step", error);
+// });
+
+//Even shorter form 
+getUser(1)
+.then(getOrders)
+.then(getDetails)
+.then(console.log)
+.catch(console.error);
+
