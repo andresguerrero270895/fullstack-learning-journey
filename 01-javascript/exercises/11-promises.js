@@ -15,8 +15,6 @@
  -Status : "Delivered" (fulfilled) or "canceled" (Rejected)
  */
 
-console.log("\n === PROMISES ===");
-
 // EXAMPLE : Creating a Promise 
 
 const myFirstPromise = new Promise ((resolve, reject) => {
@@ -37,6 +35,7 @@ const myFirstPromise = new Promise ((resolve, reject) => {
 //Using the promises with .then() and catch()
 
 myFirstPromise.then((result) => {
+  console.log("\n === PROMISES ===");
   console.log("Success:", result);
 }).catch((error) => {
   console.log("Error", error)
@@ -76,11 +75,10 @@ getUserPromise(1)
 
 //=== EXAMPLE 3 : Chaining Promises (.then chain)
 
-console.log("\n ===CHAINING PROMISES ===");
-
 function getUser(id) {
   return new Promise((resolve) => {
     setTimeout(() => {
+      console.log("\n ===CHAINING PROMISES ===");
       console.log("1. User retrieved");
       resolve({ id: id, name: "Esteban"})
     }, 500);
@@ -130,22 +128,87 @@ getUser(1)
 
 //=== EXAMPLE 4 : Promise.all - Execute in paeallel
 
-console.log("\n=== PROMISE.ALL");
-
 const promise1 = new Promise((resolve) => {
-  setTimeout(() => resolve("Result 1"), 4000);
+  setTimeout(() => resolve("Result 1"), 1000);
 });
 
 const promise2 = new Promise((resolve) => {
-  setTimeout(() => resolve("Result 2"), 5000);
+  setTimeout(() => resolve("Result 2"), 2000);
 });
 
 const promise3 =  new Promise((resolve) => {
-  setTimeout(() => resolve("Result 3"), 6000);
+  setTimeout(() => resolve("Result 3"), 3000);
 });
 
 Promise.all([promise1, promise2, promise3])
 .then((results) => {
+  console.log("\n=== PROMISE.ALL");
   console.log("All results", results);
+});
+
+//Practical example: fetching data from multiple endpoints 
+function getProduct(id) {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve({id: id, name: `Product ${id}`}),4000);
+  });
+}
+
+//Get 3 products in parallel (faster than sequential)
+Promise.all([getProduct(1), getProduct(2), getProduct(3)])
+.then ((products) => {
+  console.log("All products:", products);
+});
+
+//===EXAMPLE 5 : Promise.race - The first One Wins
+
+const slow = new Promise((resolve) => {
+  setTimeout(() => resolve("Slow Server"), 5000);
+});
+
+const fast = new Promise((resolve) => {
+  setTimeout(() => resolve("Fast Server"), 4500);
+});
+
+//The first one to finish "wins"
+Promise.race([slow, fast])
+.then((result) => {
+  console.log("Winner", result);
+});
+
+//Practicall use: timeout for operations
+function withTimeout(promise, ms){
+  const timeout = new Promise((_, reject) => {
+    setTimeout(() => reject("Timeout"),ms);
+  });
+
+  return Promise.race([promise, timeout]);
+}
+
+const slowOperation = new Promise((resolve) => {
+  setTimeout(() => resolve("Data"),5500);
+});
+
+withTimeout(slowOperation, 2000)
+.then(console.log)
+.catch(console.error);
+
+//=== EXAMPLE 5: Promise.allSettled - All results ===
+
+console.log("\n===PROMISE.ALLSETTLED===");
+
+const sucessful = Promise.resolve("Success");
+const failed = Promise.reject("Error");
+const anotherSuccesful = Promise.resolve("Another success");
+
+Promise.allSettled([sucessful, failed, anotherSuccesful])
+.then((results) => {
+  console.log("All results (including errors):");
+  results.forEach((result, index) => {
+    if(result.status === "fulfilled") {
+      console.log(`${index}: ${result.value}`);
+    } else {
+      console.log(`${index}: ${result.reason}`);
+    }
+  });
 });
 
