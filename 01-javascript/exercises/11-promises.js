@@ -175,7 +175,7 @@ Promise.race([slow, fast])
   console.log("Winner", result);
 });
 
-//Practicall use: timeout for operations
+//Practical use: timeout for operations
 function withTimeout(promise, ms){
   const timeout = new Promise((_, reject) => {
     setTimeout(() => reject("Timeout"),ms);
