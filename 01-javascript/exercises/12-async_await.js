@@ -60,7 +60,7 @@ function getData(id) {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve({ id, name : `User ${id}`});
-    }, 500);
+    }, 4000);
   });
 }
 
@@ -76,7 +76,7 @@ function getUserWithPromises (){
   });
 }
 
-//With async/await (cleanner)
+//With async/await (cleaner)
 async function getUserWithAsync() {
   const user = await getData(1);
   console.log("Async - User", user);
@@ -89,4 +89,43 @@ async function getUserWithAsync() {
 }
 
 getUserWithAsync().then(console.log);
+
+
+//EXAMPLE 4 : Error handling with Try/catch 
+
+
+
+function operationThatMightFail (sucess) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if(sucess){
+        console.log("\n=== TRY/CATCH WITH ASYNC ===");
+        resolve("Operation sucessful!");
+      } else {
+      reject(new Error("The operation failed"))
+      }
+    }, 5000);
+  });
+}
+
+async function executeWithHandling() {
+  try {
+    console.log("Attempting operation 1...");
+    const result1 = await operationThatMightFail(true);
+    console.log(result1);
+
+    console.log("Attempting operation 2...");
+    const result2 = await operationThatMightFail(false);
+    console.log(result2);
+
+  } catch {
+    console.log("Error caught", error.message);
+    
+  } finally {
+    console.log("Process finished (always executes)");
+  }
+}
+
+executeWithHandling();
+
 
