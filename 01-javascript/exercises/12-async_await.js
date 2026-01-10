@@ -128,4 +128,26 @@ async function executeWithHandling() {
 
 executeWithHandling();
 
+//EXAMPLE 5 : Async/Await with promise.all
+
+console.log("\n ASYNC/AWAIT + PROMISE ALL");
+
+async function getAllData() {
+  try {
+    console.log("Fetching data in parallel");
+    
+    const [ user1, user2, user3 ] = await Promise.all([
+      getData(1),
+      getData(2),
+      getData(3)
+    ]);
+    
+    console.log("Users retrieved", { user1, user2, user3});
+  
+  } catch (error) {
+    console.log("Error", error.message);
+  }
+}
+
+getAllData();
 
