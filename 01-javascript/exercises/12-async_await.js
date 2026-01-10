@@ -151,3 +151,81 @@ async function getAllData() {
 
 getAllData();
 
+
+// EXAMPLE 20: Real case - Simulate API fetch
+
+console.log("\n=== REAL CASE: SIMULATE API ===");
+
+const database = {
+  users: [
+    { id: 1, name: "Ana", role: "admin"},
+    { id: 2, name: "Luis", role: "user"},
+    { id: 3, name: "Maria", role: "user"}
+  ],
+
+  products: [
+    { id: 1, name: "Laptop", price: 1500},
+    { id: 2, name: "Mouse", price: 500},
+    { id: 3, name: "keyboard", price: 800}
+  ]
+};
+
+// Simulate API Calls 
+function api(endpoint, delay = 500) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if(endpoint === "/users") {
+        resolve({ data: database.users, status: 200});
+      } else if (endpoint === "/products") {
+        resolve({ data: database.products, status : 200});
+      } else if (endpoint.startsWith("/users")) {
+        const id = parseInt(endpoint.split("/")[2]);
+        const user = database.users.find(u => u.id === id);
+        if (user) { 
+          resolve({ data: user, status: 200});
+        } else {
+          reject({ error : "User not found", status : 404});
+        }
+      } else {
+        reject({ error: "Endpoint not found", status: 404})
+      }
+    }, delay);
+  });
+}
+
+async function main() {
+  console.log("=== APLICATION STARTED ===\n");
+
+
+  try { 
+    //Get all users
+    console.log("Fetching users...");
+    const usersResponse = await api("/users");
+    console.log("Users", usersResponse.data);
+
+    //Get all products
+    console.log("Fetching orders...");
+    const productsResponse = await api("/products");
+    console.log("Products", productsResponse.data);
+
+    //Get a specific user 
+    console.log("\n Fetching user with ID 2 ...");
+    const userResponse = await api("/users/2");
+    console.log("User", userResponse.data);
+
+
+    //Try to get an user that doesn't exist 
+    console.log("\n Fetching user with ID 99...");
+    const noneexistenResponse= await api("/users/99");
+    console.log("User", noneexistenResponse.data);
+
+  } catch(error) { 
+    console.log(`Error`, error.error, `(Status: ${error.status})`);
+  }
+  console.log("\n===APLICATION FINISHED ===");
+}
+
+main();
+
+
+
